@@ -1,0 +1,79 @@
+[2024-06-24T04:25:49.004+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-24T04:25:49.031+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: encryption_dag.encrypt_and_upload manual__2024-06-24T03:05:31.208153+00:00 [queued]>
+[2024-06-24T04:25:49.051+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: encryption_dag.encrypt_and_upload manual__2024-06-24T03:05:31.208153+00:00 [queued]>
+[2024-06-24T04:25:49.052+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-24T04:25:49.082+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): encrypt_and_upload> on 2024-06-24 03:05:31.208153+00:00
+[2024-06-24T04:25:49.105+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-24T04:25:49.107+0000] {standard_task_runner.py:63} INFO - Started process 257 to run task
+[2024-06-24T04:25:49.105+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'encryption_dag', 'encrypt_and_upload', 'manual__2024-06-24T03:05:31.208153+00:00', '--job-id', '210', '--raw', '--subdir', 'DAGS_FOLDER/encryption_dag.py', '--cfg-path', '/tmp/tmpjagt1dyr']
+[2024-06-24T04:25:49.111+0000] {standard_task_runner.py:91} INFO - Job 210: Subtask encrypt_and_upload
+[2024-06-24T04:25:49.218+0000] {task_command.py:426} INFO - Running <TaskInstance: encryption_dag.encrypt_and_upload manual__2024-06-24T03:05:31.208153+00:00 [running]> on host 4e5646ae0bec
+[2024-06-24T04:25:49.358+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='encryption_dag' AIRFLOW_CTX_TASK_ID='encrypt_and_upload' AIRFLOW_CTX_EXECUTION_DATE='2024-06-24T03:05:31.208153+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-24T03:05:31.208153+00:00'
+[2024-06-24T04:25:49.360+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-24T04:25:49.386+0000] {encryption_dag.py:41} INFO - Starting encryption process...
+[2024-06-24T04:25:49.397+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-24T04:25:49.399+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-06-24T04:25:50.928+0000] {encryption_dag.py:48} INFO - File downloaded from GCS: datasets/athletes.csv
+[2024-06-24T04:25:55.019+0000] {gcs.py:574} INFO - Data stream uploaded to datasets/athletes.csv.enc in golden-cheetah-datasets bucket
+[2024-06-24T04:25:55.020+0000] {encryption_dag.py:55} INFO - File uploaded to GCS: datasets/athletes.csv.enc
+[2024-06-24T04:25:55.385+0000] {encryption_dag.py:62} ERROR - An error occurred during the encryption and upload process
+Traceback (most recent call last):
+  File "/opt/airflow/dags/encryption_dag.py", line 58, in task_encrypt_and_upload
+    gcs_hook.delete(bucket_name, source_blob)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/hooks/gcs.py", line 696, in delete
+    blob.delete()
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/blob.py", line 796, in delete
+    self.bucket.delete_blob(
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/bucket.py", line 1680, in delete_blob
+    client._delete_resource(
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/client.py", line 769, in _delete_resource
+    return self._connection.api_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/_http.py", line 78, in api_request
+    return call()
+           ^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.NotFound: 404 DELETE https://storage.googleapis.com/storage/v1/b/golden-cheetah-datasets/o/datasets%2Fathletes.csv?prettyPrint=false: The specified key does not exist.
+[2024-06-24T04:25:55.433+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-24T04:25:55.435+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/encryption_dag.py", line 58, in task_encrypt_and_upload
+    gcs_hook.delete(bucket_name, source_blob)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/hooks/gcs.py", line 696, in delete
+    blob.delete()
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/blob.py", line 796, in delete
+    self.bucket.delete_blob(
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/bucket.py", line 1680, in delete_blob
+    client._delete_resource(
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/client.py", line 769, in _delete_resource
+    return self._connection.api_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/storage/_http.py", line 78, in api_request
+    return call()
+           ^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.NotFound: 404 DELETE https://storage.googleapis.com/storage/v1/b/golden-cheetah-datasets/o/datasets%2Fathletes.csv?prettyPrint=false: The specified key does not exist.
+[2024-06-24T04:25:55.485+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=encryption_dag, task_id=encrypt_and_upload, run_id=manual__2024-06-24T03:05:31.208153+00:00, execution_date=20240624T030531, start_date=20240624T042549, end_date=20240624T042555
+[2024-06-24T04:25:55.527+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 210 for task encrypt_and_upload (404 DELETE https://storage.googleapis.com/storage/v1/b/golden-cheetah-datasets/o/datasets%2Fathletes.csv?prettyPrint=false: The specified key does not exist.; 257)
+[2024-06-24T04:25:55.587+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-24T04:25:55.624+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-24T04:25:55.627+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

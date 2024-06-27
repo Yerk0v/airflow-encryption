@@ -1,0 +1,23 @@
+[2024-06-23T00:50:54.735+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T00:50:54.761+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_dag.transform_data_query manual__2024-06-23T00:50:41.677448+00:00 [queued]>
+[2024-06-23T00:50:54.774+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_dag.transform_data_query manual__2024-06-23T00:50:41.677448+00:00 [queued]>
+[2024-06-23T00:50:54.775+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-23T00:50:54.795+0000] {taskinstance.py:2330} INFO - Executing <Task(BigQueryInsertJobOperator): transform_data_query> on 2024-06-23 00:50:41.677448+00:00
+[2024-06-23T00:50:54.815+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=3240) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T00:50:54.818+0000] {standard_task_runner.py:63} INFO - Started process 3242 to run task
+[2024-06-23T00:50:54.819+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_dag', 'transform_data_query', 'manual__2024-06-23T00:50:41.677448+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmpvsjtggrw']
+[2024-06-23T00:50:54.823+0000] {standard_task_runner.py:91} INFO - Job 50: Subtask transform_data_query
+[2024-06-23T00:50:54.915+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_pipeline_dag.transform_data_query manual__2024-06-23T00:50:41.677448+00:00 [running]> on host 64917a389d59
+[2024-06-23T00:50:55.139+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline_dag' AIRFLOW_CTX_TASK_ID='transform_data_query' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T00:50:41.677448+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-23T00:50:41.677448+00:00'
+[2024-06-23T00:50:55.143+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-23T00:50:55.213+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-23T00:50:55.228+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-06-23T00:50:55.323+0000] {bigquery.py:2872} INFO - Executing: {'query': {'query': "\n                    CREATE OR REPLACE TABLE `transformed_1.filtered_test` AS\n                    SELECT \n                        id,\n                        CASE WHEN gender = 'M' THEN 1 ELSE 0 END AS gender,\n                        bike,\n                        swim,\n                        run,\n                        other\n                    FROM \n                        `transformed_1.test`\n                    WHERE \n                        bike > 0 AND \n                        swim = 0 AND \n                        run = 0 AND \n                        other = 0\n                ", 'useLegacySql': False}}'
+[2024-06-23T00:50:55.324+0000] {bigquery.py:1670} INFO - Inserting job ***_etl_pipeline_dag_transform_data_query_2024_06_23T00_50_41_677448_00_00_b18eef6c4ff5f2a5517870fbcfa49945
+[2024-06-23T00:50:58.487+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-23T00:50:58.523+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_pipeline_dag, task_id=transform_data_query, run_id=manual__2024-06-23T00:50:41.677448+00:00, execution_date=20240623T005041, start_date=20240623T005054, end_date=20240623T005058
+[2024-06-23T00:50:58.573+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-23T00:50:58.602+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T00:50:58.605+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

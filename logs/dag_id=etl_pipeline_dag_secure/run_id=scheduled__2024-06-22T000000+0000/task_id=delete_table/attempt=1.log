@@ -1,0 +1,18 @@
+[2024-06-23T03:23:33.551+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T03:23:33.731+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_dag_secure.delete_table scheduled__2024-06-22T00:00:00+00:00 [queued]>
+[2024-06-23T03:23:33.810+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_dag_secure.delete_table scheduled__2024-06-22T00:00:00+00:00 [queued]>
+[2024-06-23T03:23:33.820+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2024-06-23T03:23:33.891+0000] {taskinstance.py:2330} INFO - Executing <Task(BigQueryDeleteTableOperator): delete_table> on 2024-06-22 00:00:00+00:00
+[2024-06-23T03:23:34.135+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=5198) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T03:23:34.166+0000] {standard_task_runner.py:63} INFO - Started process 5203 to run task
+[2024-06-23T03:23:34.186+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_dag_secure', 'delete_table', 'scheduled__2024-06-22T00:00:00+00:00', '--job-id', '93', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmpin9idiqi']
+[2024-06-23T03:23:34.202+0000] {standard_task_runner.py:91} INFO - Job 93: Subtask delete_table
+[2024-06-23T03:23:34.507+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_pipeline_dag_secure.delete_table scheduled__2024-06-22T00:00:00+00:00 [running]> on host 64917a389d59
+[2024-06-23T03:23:44.605+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 93 for task delete_table ((psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 5203)
+[2024-06-23T03:23:44.971+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-23T03:23:45.063+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T03:23:45.069+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

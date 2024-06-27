@@ -1,0 +1,30 @@
+[2024-06-22T22:27:32.004+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-22T22:27:32.081+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transform_data_dag.log_data_task manual__2024-06-22T22:26:08.288860+00:00 [queued]>
+[2024-06-22T22:27:32.119+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transform_data_dag.log_data_task manual__2024-06-22T22:26:08.288860+00:00 [queued]>
+[2024-06-22T22:27:32.121+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-22T22:27:32.195+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): log_data_task> on 2024-06-22 22:26:08.288860+00:00
+[2024-06-22T22:27:32.247+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1513) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-22T22:27:32.252+0000] {standard_task_runner.py:63} INFO - Started process 1523 to run task
+[2024-06-22T22:27:32.254+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'transform_data_dag', 'log_data_task', 'manual__2024-06-22T22:26:08.288860+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmp6zep6r_t']
+[2024-06-22T22:27:32.263+0000] {standard_task_runner.py:91} INFO - Job 37: Subtask log_data_task
+[2024-06-22T22:27:32.370+0000] {task_command.py:426} INFO - Running <TaskInstance: transform_data_dag.log_data_task manual__2024-06-22T22:26:08.288860+00:00 [running]> on host 64917a389d59
+[2024-06-22T22:27:32.721+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transform_data_dag' AIRFLOW_CTX_TASK_ID='log_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-06-22T22:26:08.288860+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-22T22:26:08.288860+00:00'
+[2024-06-22T22:27:32.727+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-22T22:27:32.871+0000] {logging_mixin.py:188} INFO - ['d3b0412a-0ca1-4062-b174-c0b4a76b945e', 'M', '190']
+[2024-06-22T22:27:32.873+0000] {logging_mixin.py:188} INFO - ['cfc78de2-7fcf-4318-90a3-ba3e918ff945', 'M', '0']
+[2024-06-22T22:27:32.874+0000] {logging_mixin.py:188} INFO - ['7c4979a6-ce92-4ec8-b20a-aece6f66ee34', 'M', '48']
+[2024-06-22T22:27:32.875+0000] {logging_mixin.py:188} INFO - ['b7326e91-61e1-4e56-9f94-5dc1dc80228c', 'M', '431']
+[2024-06-22T22:27:32.876+0000] {logging_mixin.py:188} INFO - ['e03aeb8c-8935-4375-b839-eaa54707e550', 'M', '491']
+[2024-06-22T22:27:32.876+0000] {logging_mixin.py:188} INFO - ['34f3789f-d9cb-4151-b2db-2ac310ecfced', 'M', '49']
+[2024-06-22T22:27:32.878+0000] {logging_mixin.py:188} INFO - ['b8860494-ea4f-42d3-bd4b-5387a2d9b853', 'M', '169']
+[2024-06-22T22:27:32.879+0000] {logging_mixin.py:188} INFO - ['b5c4a8c2-90b6-429c-a564-a73883121427', 'M', '6']
+[2024-06-22T22:27:32.880+0000] {logging_mixin.py:188} INFO - ['2d7b7170-2042-4c7a-bd89-9a25220b46f1', 'M', '97']
+[2024-06-22T22:27:32.881+0000] {logging_mixin.py:188} INFO - ['f1d02c2e-9d94-42b5-8452-c2db9610d229', 'M', '47']
+[2024-06-22T22:27:32.884+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-22T22:27:32.887+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-22T22:27:32.954+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=transform_data_dag, task_id=log_data_task, run_id=manual__2024-06-22T22:26:08.288860+00:00, execution_date=20240622T222608, start_date=20240622T222732, end_date=20240622T222732
+[2024-06-22T22:27:33.044+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-22T22:27:33.103+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-22T22:27:33.108+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

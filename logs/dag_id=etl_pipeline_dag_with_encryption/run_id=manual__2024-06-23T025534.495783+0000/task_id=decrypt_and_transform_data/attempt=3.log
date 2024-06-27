@@ -1,0 +1,55 @@
+[2024-06-23T03:12:55.230+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T03:12:55.263+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_dag_with_encryption.decrypt_and_transform_data manual__2024-06-23T02:55:34.495783+00:00 [queued]>
+[2024-06-23T03:12:55.278+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_dag_with_encryption.decrypt_and_transform_data manual__2024-06-23T02:55:34.495783+00:00 [queued]>
+[2024-06-23T03:12:55.279+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2024-06-23T03:12:55.310+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): decrypt_and_transform_data> on 2024-06-23 02:55:34.495783+00:00
+[2024-06-23T03:12:55.361+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=5077) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T03:12:55.374+0000] {standard_task_runner.py:63} INFO - Started process 5081 to run task
+[2024-06-23T03:12:55.376+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_dag_with_encryption', 'decrypt_and_transform_data', 'manual__2024-06-23T02:55:34.495783+00:00', '--job-id', '89', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmpcwywx9xn']
+[2024-06-23T03:12:55.382+0000] {standard_task_runner.py:91} INFO - Job 89: Subtask decrypt_and_transform_data
+[2024-06-23T03:12:55.578+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_pipeline_dag_with_encryption.decrypt_and_transform_data manual__2024-06-23T02:55:34.495783+00:00 [running]> on host 64917a389d59
+[2024-06-23T03:12:56.469+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline_dag_with_encryption' AIRFLOW_CTX_TASK_ID='decrypt_and_transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T02:55:34.495783+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-23T02:55:34.495783+00:00'
+[2024-06-23T03:12:56.471+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-23T03:12:56.539+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-23T03:12:56.540+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/cryptography/fernet.py", line 134, in _verify_signature
+    h.verify(data[-32:])
+cryptography.exceptions.InvalidSignature: Signature did not match digest.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bigquery.py", line 49, in decrypt_and_transform_data
+    decrypted_data = fernet.decrypt(encrypted_data)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/cryptography/fernet.py", line 91, in decrypt
+    return self._decrypt_data(data, timestamp, time_info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/cryptography/fernet.py", line 152, in _decrypt_data
+    self._verify_signature(data)
+  File "/home/airflow/.local/lib/python3.12/site-packages/cryptography/fernet.py", line 136, in _verify_signature
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+[2024-06-23T03:12:56.569+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline_dag_with_encryption, task_id=decrypt_and_transform_data, run_id=manual__2024-06-23T02:55:34.495783+00:00, execution_date=20240623T025534, start_date=20240623T031255, end_date=20240623T031256
+[2024-06-23T03:12:56.592+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 89 for task decrypt_and_transform_data (; 5081)
+[2024-06-23T03:12:56.645+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-23T03:12:56.686+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T03:12:56.690+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

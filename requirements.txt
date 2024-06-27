@@ -1,0 +1,10 @@
+apache-airflow[gcp]
+apache-beam[gcp]==2.40.0
+pyarrow==11.0.0
+Faker==25.9.1
+cryptography
+apache-airflow-providers-google==10.19.0
+google-cloud-storage==2.17.0
+google-cloud-kms==2.23.0
+google-cloud-bigquery==3.25.0
+psycopg2-binary

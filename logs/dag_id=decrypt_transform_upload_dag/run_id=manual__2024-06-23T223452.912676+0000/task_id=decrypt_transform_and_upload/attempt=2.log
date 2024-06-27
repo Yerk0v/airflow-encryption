@@ -1,0 +1,17 @@
+[2024-06-23T22:40:14.719+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T22:40:14.755+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: decrypt_transform_upload_dag.decrypt_transform_and_upload manual__2024-06-23T22:34:52.912676+00:00 [queued]>
+[2024-06-23T22:40:14.770+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: decrypt_transform_upload_dag.decrypt_transform_and_upload manual__2024-06-23T22:34:52.912676+00:00 [queued]>
+[2024-06-23T22:40:14.771+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-23T22:40:14.800+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): decrypt_transform_and_upload> on 2024-06-23 22:34:52.912676+00:00
+[2024-06-23T22:40:14.834+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=201) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T22:40:14.837+0000] {standard_task_runner.py:63} INFO - Started process 222 to run task
+[2024-06-23T22:40:14.835+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'decrypt_transform_upload_dag', 'decrypt_transform_and_upload', 'manual__2024-06-23T22:34:52.912676+00:00', '--job-id', '141', '--raw', '--subdir', 'DAGS_FOLDER/desencrypt_upload.py', '--cfg-path', '/tmp/tmpv8h9lvs0']
+[2024-06-23T22:40:14.838+0000] {standard_task_runner.py:91} INFO - Job 141: Subtask decrypt_transform_and_upload
+[2024-06-23T22:40:42.227+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 141 for task decrypt_transform_and_upload ((psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 222)
+[2024-06-23T22:40:53.578+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-23T22:40:53.707+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T22:40:53.711+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,26 @@
+[2024-06-23T01:56:14.324+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T01:56:14.356+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_dag.create_final_data_table manual__2024-06-23T01:55:04.127989+00:00 [queued]>
+[2024-06-23T01:56:14.372+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_dag.create_final_data_table manual__2024-06-23T01:55:04.127989+00:00 [queued]>
+[2024-06-23T01:56:14.373+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-23T01:56:14.395+0000] {taskinstance.py:2330} INFO - Executing <Task(BigQueryCreateEmptyTableOperator): create_final_data_table> on 2024-06-23 01:55:04.127989+00:00
+[2024-06-23T01:56:14.570+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=4075) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T01:56:14.574+0000] {standard_task_runner.py:63} INFO - Started process 4077 to run task
+[2024-06-23T01:56:14.572+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_dag', 'create_final_data_table', 'manual__2024-06-23T01:55:04.127989+00:00', '--job-id', '72', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmpkrb9otwt']
+[2024-06-23T01:56:14.576+0000] {standard_task_runner.py:91} INFO - Job 72: Subtask create_final_data_table
+[2024-06-23T01:56:14.708+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_pipeline_dag.create_final_data_table manual__2024-06-23T01:55:04.127989+00:00 [running]> on host 64917a389d59
+[2024-06-23T01:56:15.135+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline_dag' AIRFLOW_CTX_TASK_ID='create_final_data_table' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T01:55:04.127989+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-23T01:55:04.127989+00:00'
+[2024-06-23T01:56:15.143+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-23T01:56:15.265+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-23T01:56:15.299+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-06-23T01:56:15.302+0000] {bigquery.py:1563} INFO - Creating table
+[2024-06-23T01:56:25.612+0000] {connectionpool.py:874} WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f366e40ff20>: Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)")': /token
+[2024-06-23T01:56:35.665+0000] {connectionpool.py:874} WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f366e30f0b0>: Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)")': /token
+[2024-06-23T01:56:46.209+0000] {connectionpool.py:874} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f366e30f4a0>: Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)")': /token
+[2024-06-23T01:56:49.825+0000] {bigquery.py:1591} INFO - Table final_data.new-data already exists.
+[2024-06-23T01:56:49.879+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-23T01:56:49.909+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_pipeline_dag, task_id=create_final_data_table, run_id=manual__2024-06-23T01:55:04.127989+00:00, execution_date=20240623T015504, start_date=20240623T015614, end_date=20240623T015649
+[2024-06-23T01:56:50.030+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-23T01:56:50.196+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T01:56:50.202+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

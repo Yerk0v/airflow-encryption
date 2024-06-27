@@ -1,0 +1,55 @@
+[2024-06-23T01:42:59.390+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-23T01:42:59.416+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_dag.load_to_final_data manual__2024-06-23T01:42:16.265436+00:00 [queued]>
+[2024-06-23T01:42:59.429+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_dag.load_to_final_data manual__2024-06-23T01:42:16.265436+00:00 [queued]>
+[2024-06-23T01:42:59.430+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-23T01:42:59.450+0000] {taskinstance.py:2330} INFO - Executing <Task(BigQueryInsertJobOperator): load_to_final_data> on 2024-06-23 01:42:16.265436+00:00
+[2024-06-23T01:42:59.466+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=3899) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-23T01:42:59.469+0000] {standard_task_runner.py:63} INFO - Started process 3901 to run task
+[2024-06-23T01:42:59.469+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_dag', 'load_to_final_data', 'manual__2024-06-23T01:42:16.265436+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/bigquery.py', '--cfg-path', '/tmp/tmpe_vxcrnz']
+[2024-06-23T01:42:59.473+0000] {standard_task_runner.py:91} INFO - Job 64: Subtask load_to_final_data
+[2024-06-23T01:42:59.553+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_pipeline_dag.load_to_final_data manual__2024-06-23T01:42:16.265436+00:00 [running]> on host 64917a389d59
+[2024-06-23T01:42:59.702+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_pipeline_dag' AIRFLOW_CTX_TASK_ID='load_to_final_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T01:42:16.265436+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-23T01:42:16.265436+00:00'
+[2024-06-23T01:42:59.705+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-23T01:42:59.733+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-23T01:42:59.736+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-06-23T01:42:59.808+0000] {bigquery.py:2872} INFO - Executing: {'query': {'query': '\n                    INSERT INTO `boreal-forest-427103-q9.final_data.new-data`\n                    SELECT \n                        *\n                    FROM \n                        `transformed_1.final_test`\n                ', 'useLegacySql': False}}'
+[2024-06-23T01:42:59.810+0000] {bigquery.py:1670} INFO - Inserting job ***_etl_pipeline_dag_load_to_final_data_2024_06_23T01_42_16_265436_00_00_c086ec0e159416b117082024424ca3f0
+[2024-06-23T01:43:01.604+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-23T01:43:01.606+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 2931, in execute
+    job.result(timeout=self.result_timeout, retry=self.result_retry)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1590, in result
+    do_get_result()
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1579, in do_get_result
+    super(QueryJob, self).result(retry=retry, timeout=timeout)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/base.py", line 971, in result
+    return super(_AsyncJob, self).result(timeout=timeout, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/api_core/future/polling.py", line 261, in result
+    raise self._exception
+google.api_core.exceptions.BadRequest: 400 Inserted row has wrong column count; Has 6, expected 36 at [3:21]; reason: invalidQuery, location: query, message: Inserted row has wrong column count; Has 6, expected 36 at [3:21]
+
+Location: US
+Job ID: airflow_etl_pipeline_dag_load_to_final_data_2024_06_23T01_42_16_265436_00_00_c086ec0e159416b117082024424ca3f0
+
+[2024-06-23T01:43:01.639+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=etl_pipeline_dag, task_id=load_to_final_data, run_id=manual__2024-06-23T01:42:16.265436+00:00, execution_date=20240623T014216, start_date=20240623T014259, end_date=20240623T014301
+[2024-06-23T01:43:01.671+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 64 for task load_to_final_data (400 Inserted row has wrong column count; Has 6, expected 36 at [3:21]; reason: invalidQuery, location: query, message: Inserted row has wrong column count; Has 6, expected 36 at [3:21]
+
+Location: US
+Job ID: airflow_etl_pipeline_dag_load_to_final_data_2024_06_23T01_42_16_265436_00_00_c086ec0e159416b117082024424ca3f0
+; 3901)
+[2024-06-23T01:43:01.700+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-23T01:43:01.733+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-23T01:43:01.746+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

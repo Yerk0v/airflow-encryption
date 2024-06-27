@@ -1,0 +1,70 @@
+[2024-06-22T06:47:06.432+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-22T06:47:06.455+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_processing.etl_process manual__2024-06-22T06:41:49.276033+00:00 [queued]>
+[2024-06-22T06:47:06.465+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_processing.etl_process manual__2024-06-22T06:41:49.276033+00:00 [queued]>
+[2024-06-22T06:47:06.466+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-22T06:47:06.483+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): etl_process> on 2024-06-22 06:41:49.276033+00:00
+[2024-06-22T06:47:06.494+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=2029) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-22T06:47:06.497+0000] {standard_task_runner.py:63} INFO - Started process 2030 to run task
+[2024-06-22T06:47:06.497+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'gcs_processing', 'etl_process', 'manual__2024-06-22T06:41:49.276033+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/gcs_processing.py', '--cfg-path', '/tmp/tmp_zgt1u8e']
+[2024-06-22T06:47:06.501+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask etl_process
+[2024-06-22T06:47:06.559+0000] {task_command.py:426} INFO - Running <TaskInstance: gcs_processing.etl_process manual__2024-06-22T06:41:49.276033+00:00 [running]> on host ef7fea064a97
+[2024-06-22T06:47:06.669+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='gcs_processing' AIRFLOW_CTX_TASK_ID='etl_process' AIRFLOW_CTX_EXECUTION_DATE='2024-06-22T06:41:49.276033+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-22T06:41:49.276033+00:00'
+[2024-06-22T06:47:06.671+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-22T06:47:06.725+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-22T06:47:06.730+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-06-22T06:47:06.733+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-22T06:47:06.735+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/gcs_processing.py", line 15, in etl_process
+    source_data = gcs_hook.download(bucket_name, source_blob)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/hooks/gcs.py", line 341, in download
+    client = self.get_conn()
+             ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/hooks/gcs.py", line 173, in get_conn
+    credentials=self.get_credentials(), client_info=CLIENT_INFO, project=self.project_id
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/common/hooks/base_google.py", line 332, in get_credentials
+    credentials, _ = self.get_credentials_and_project_id()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/common/hooks/base_google.py", line 308, in get_credentials_and_project_id
+    credentials, project_id = get_credentials_and_project_id(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/utils/credentials_provider.py", line 371, in get_credentials_and_project_id
+    return _CredentialProvider(*args, **kwargs).get_credentials_and_project()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/utils/credentials_provider.py", line 245, in get_credentials_and_project
+    credentials, project_id = self._get_credentials_using_key_path()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/utils/credentials_provider.py", line 295, in _get_credentials_using_key_path
+    credentials = google.oauth2.service_account.Credentials.from_service_account_file(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/oauth2/service_account.py", line 258, in from_service_account_file
+    info, signer = _service_account_info.from_filename(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/auth/_service_account_info.py", line 78, in from_filename
+    with io.open(filename, "r", encoding="utf-8") as json_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Yerko\\Downloads\\credentials.json'
+[2024-06-22T06:47:06.770+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=gcs_processing, task_id=etl_process, run_id=manual__2024-06-22T06:41:49.276033+00:00, execution_date=20240622T064149, start_date=20240622T064706, end_date=20240622T064706
+[2024-06-22T06:47:06.788+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 16 for task etl_process ([Errno 2] No such file or directory: 'C:\\Users\\Yerko\\Downloads\\credentials.json'; 2030)
+[2024-06-22T06:47:06.833+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-22T06:47:06.865+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-22T06:47:06.870+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

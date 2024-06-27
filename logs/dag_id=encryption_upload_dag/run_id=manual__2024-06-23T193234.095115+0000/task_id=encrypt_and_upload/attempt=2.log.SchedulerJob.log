@@ -1,0 +1,1 @@
+[2024-06-23T19:37:37.837+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: encryption_upload_dag.encrypt_and_upload manual__2024-06-23T19:32:34.095115+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

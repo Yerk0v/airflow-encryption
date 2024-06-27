@@ -1,0 +1,1 @@
+[2024-06-23T02:56:17.111+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: etl_pipeline_dag_with_encryption.delete_table scheduled__2024-06-22T00:00:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

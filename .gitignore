@@ -2,6 +2,6 @@
 dags/keys/credentials.json
 
 # Ignorar la carpeta de logs de Airflow
-Airflow/logs/
+logs/
 
 

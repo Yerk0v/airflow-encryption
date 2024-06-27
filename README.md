@@ -1,6 +1,6 @@
 # Proyecto ETL para Encriptar y Desencriptar Datos Sensibles de Ciclistas con Airflow y GCP
 
-[![Representación del proyecto](imagen.png]
+[![Representación del proyecto](airflow-encryption/imagen.png]
 
 Este proyecto utiliza Docker, Airflow y servicios de Google Cloud Platform (GCP) para encriptar y desencriptar datos sensibles de ciclistas. La encriptación de datos es crucial para proteger la privacidad de los usuarios y cumplir con las regulaciones de protección de datos.
 

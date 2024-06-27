@@ -9,7 +9,7 @@ Este proyecto utiliza Docker, Airflow y servicios de Google Cloud Platform (GCP)
 El proyecto realiza las siguientes tareas:
 
 1. **Encriptación:** Encripta los datos originales de los ciclistas para proteger su información personal.
-2. **Carga a Google Cloud Storage:** Almacena los datos encriptados en un bucket de Google Cloud Storage para su posterior procesamiento.
+2. **Carga a Google Cloud Storage:** Almacena los datos encriptados en un bucket de Google Cloud Storage.
 3. **Eliminación de datos no encriptados:** Elimina los archivos originales no encriptados para garantizar la seguridad de los datos.
 4. **Transformación y encriptación selectiva:** Realiza transformaciones en los datos (por ejemplo, eliminación de valores nulos) y luego encripta solo las columnas sensibles (como nombre y dirección).
 5. **Carga a BigQuery:** Carga los datos transformados y encriptados a un Data Warehouse en BigQuery para su análisis y visualización.

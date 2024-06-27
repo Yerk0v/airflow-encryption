@@ -1,1 +1,0 @@
-[2024-06-20T21:30:44.678+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: example_bash_operator.runme_1 scheduled__2024-06-19T00:00:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

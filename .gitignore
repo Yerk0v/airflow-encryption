@@ -4,4 +4,7 @@ dags/keys/credentials.json
 # Ignorar la carpeta de logs de Airflow
 logs/
 
+# Ignorar archivos compilados de Python
+__pycache__/
+*.pyc
 

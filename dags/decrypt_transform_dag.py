@@ -52,7 +52,7 @@ def transform_data(data):
     df.dropna(inplace=True)
     
     # Encriptar columnas sensibles
-    columnas_sensibles = ['name', 'adress','weightkg']
+    columnas_sensibles = ['name', 'adress']
     for columna in columnas_sensibles:
         df[columna] = df[columna].apply(lambda x: encrypt_data(x.encode(), key_name))
     

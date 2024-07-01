@@ -52,7 +52,7 @@ def transform_data(data):
     df.dropna(inplace=True)
     
     # Encriptar columnas sensibles
-    columnas_sensibles = ['name', 'adress']
+    columnas_sensibles = ['name', 'adress','weightkg']
     for columna in columnas_sensibles:
         df[columna] = df[columna].apply(lambda x: encrypt_data(x.encode(), key_name))
     
@@ -107,7 +107,7 @@ decrypt_transform_upload_task = PythonOperator(
         'bucket_name': 'golden-cheetah-datasets',
         'source_blob': 'datasets/athletes.csv.enc',
         'dataset_id': 'final_data',
-        'table_id': 'athletes_encryptedd',
+        'table_id': 'athletes_sensitive_encrypted',
     },
     dag=dag,
 )

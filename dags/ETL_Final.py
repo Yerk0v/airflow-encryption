@@ -40,7 +40,7 @@ decrypt_transform_upload_task = PythonOperator(
         'bucket_name': 'golden-cheetah-datasets',
         'source_blob': 'datasets/athletes.csv.enc',
         'dataset_id': 'final_data',
-        'table_id': 'athletes_encryptedd',
+        'table_id': 'athletes_encrypted',
     },
     dag=dag,
 )

@@ -11,7 +11,7 @@ The project performs the following tasks:
 1. **Encryption:** Encrypts the original cyclist data to protect their personal information.
 2. **Upload to Google Cloud Storage:** Stores the encrypted data in a Google Cloud Storage bucket.
 3. **Deletion of unencrypted data:** Deletes the original unencrypted files to ensure data security.
-4. **ransformation and selective encryption:** Performs data transformations (e.g., removing null values) and then encrypts only the sensitive columns (such as name and address).
+4. **Transformation and selective encryption:** Performs data transformations (e.g., removing null values) and then encrypts only the sensitive columns (such as name and address).
 5. **Load to BigQuery:** Loads the transformed and encrypted data to a Data Warehouse in BigQuery for analysis and visualization.
 
 ## Technologies Used

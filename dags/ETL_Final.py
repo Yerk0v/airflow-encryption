@@ -45,6 +45,6 @@ decrypt_transform_upload_task = PythonOperator(
     dag=dag,
 )
 
-# Define la secuencia de ejecución de tareas
+# Secuencia de ejecución de tareas
 encrypt_upload_task >> decrypt_transform_upload_task
 
